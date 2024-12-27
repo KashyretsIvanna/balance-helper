@@ -1,0 +1,22 @@
+<div class="statistics-container">
+    <mat-card class="statistics-items">
+      <div class="chart-widget">
+        <!-- Income Chart -->
+        <div class="chart-container">
+          <canvas baseChart
+            [data]="incomeData"
+            [type]="incomeChartType">
+          </canvas>
+        </div>
+  
+        <!-- Outcome Chart -->
+        <div class="chart-container">
+          <canvas baseChart
+            [data]="outcomeData"
+            [type]="outcomeChartType">
+          </canvas>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  

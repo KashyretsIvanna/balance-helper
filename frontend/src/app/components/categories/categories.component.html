@@ -1,0 +1,38 @@
+<div class="categories-container">
+  <!-- Add Category Form -->
+  <h3>Категорії</h3>
+  <div class="add-category-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Назва Категорії</mat-label>
+      <input matInput [(ngModel)]="newCategoryName" placeholder="Назва категорії" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Тип Категорії</mat-label>
+      <input matInput [(ngModel)]="newCategoryType" placeholder="Тип Категорії" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="add-category-button"
+      (click)="addCategory()"
+      [disabled]="!newCategoryName || !newCategoryType"
+    >
+      Додати
+    </button>
+  </div>
+
+  <!-- List of Categories -->
+  <div class="categories-list">
+    <mat-list>
+      <mat-list-item *ngFor="let category of categories">
+        <mat-icon matListItemIcon class="category-icon">
+          {{ category.Type === 'доходи' ? 'add_circle' : 'remove_circle' }}
+        </mat-icon>
+        <!-- <div class="category-details"> -->
+          <div matListItemTitle>{{ category.Name }}</div>
+          <div matListItemLine>{{ category.Type | titlecase }}</div>
+        <!-- </div> -->
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="main-container">
+  <!-- AI Avatar Section -->
+  <mat-card class="avatar-card">
+    <div class="avatar-content">
+      <img src="assets/avatar.png" alt="AI Avatar" class="ai-avatar" />
+      <div class="greeting-text">
+        <h2>Привіт!</h2>
+        <p>Чим можу допомогти сьогодні?</p>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Statistics Section -->
+  <mat-card class="statistics-card">
+    <app-statistics [transactions]="transactions"></app-statistics>
+  </mat-card>
+
+
+  <!-- Record Button Section -->
+  <div class="recording-section">
+    <button
+      mat-fab
+      color="primary"
+      class="record-btn"
+      aria-label="Start recording"
+      (mousedown)="startRecording()"
+      (mouseup)="stopRecording()"
+    >
+      <mat-icon class="btn-icon">mic</mat-icon>
+    </button>
+    <p class="recording-status">
+      {{ isRecording ? 'Запис...' : 'Зажміть для запису' }}
+    </p>
+  </div>
+
+  <!-- Inline Flexbox: Categories and Transactions -->
+  <div class="inline-section">
+    <!-- Transactions Section -->
+    <mat-card class="transactions-card">
+      <h3>Транзакції</h3>
+      <mat-list *ngIf="transactions.length > 0">
+        <mat-list-item *ngFor="let transaction of transactions">
+          <!-- Transaction Details -->
+          <div class="transaction-details">
+            <!-- Transaction Icon -->
+            <mat-icon mat-list-icon>
+              {{ transaction.Category.Type == 'доходи' || transaction.Category.Type == 'Доходи' ? 'add_circle' : 'remove_circle' }}
+            </mat-icon>
+            <!-- Amount -->
+            <div mat-line class="amount" [ngClass]="{'income': transaction.Category.Type == 'доходи' || transaction.Category.Type == 'Доходи'}">
+              {{ transaction.Amount | currency }}
+            </div>
+            <!-- Description -->
+            <div mat-line class="description">
+              {{ transaction.Description }}
+            </div>
+            <!-- Created Date -->
+            <div mat-line class="created-date">
+              {{ transaction.created_at | date: 'dd/MM/yyyy' }}
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <!-- No Transactions Found -->
+      <p *ngIf="transactions.length === 0" class="no-data">No transactions found.</p>
+    </mat-card>
+
+    <!-- Categories Section -->
+    <mat-card class="categories-card">
+      <app-categories></app-categories>
+    </mat-card>
+  </div>
+
+</div>

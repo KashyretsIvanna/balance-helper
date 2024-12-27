@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Side Navigation -->
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    [opened]="isOpened"
+    [fixedInViewport]="!isOpened"
+    class="statistics-sidenav"
+  >
+    <h2>Statistics</h2>
+    <ul>
+      <li>Total Activities: 42</li>
+      <li>Daily Transactions: 5</li>
+      <li>Monthly Report: Generated</li>
+    </ul>
+  </mat-sidenav>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-content>
+    <!-- Header -->
+    <mat-toolbar color="primary" class="app-toolbar">
+      <button
+        mat-icon-button
+        *ngIf="isSmallScreen"
+        (click)="sidenav.toggle()"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>FinBot</span>
+    </mat-toolbar>
+
+    <!-- Page Content -->
+    <div class="content">
+      <app-spinner></app-spinner>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
